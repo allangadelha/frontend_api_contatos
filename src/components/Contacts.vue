@@ -1,25 +1,47 @@
 <template>
     <div class="contacts">
-        <Item v-for="(item, index) in contacts" :key="index" :item="item" />
+        <Item v-for="(item, index) in contatos" :key="index" :item="item" />
+        <div v-if="$apollo.queries.contatos.loading">
+          carregando
+        </div>
+        <div v-if="errorMessage">
+          {{ errorMessage }}
+        </div>
     </div>
 </template>
 
 <script>
 
-
-import data from '../data'
 import Item from './Item'
+import gql from 'graphql-tag'
 
+const getContacts = gql`
+   query {
+    contatos {
+        id
+        nome
+        email
+        telefone
+    }
+}
+`
 
 export default {
   name: 'Contacts',
-  components: { Item },  
-  data() {
-    console.log('aaa', data)
-    return {
-      contacts: data
+  components: { Item },
+  apollo: {
+    contatos: {
+      query: getContacts,
+      error(error){
+        this.errorMessage = "Servidor indisponível 😠"
+      }
     }
-  }
+  },
+  data() {
+    return {
+      errorMessage: ''
+    }
+  },
 }
 </script>
 

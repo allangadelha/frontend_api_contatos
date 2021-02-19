@@ -30,6 +30,6 @@ const apolloProvider = new VueApollo({
 
 new Vue({
   el: '#app',
+  apolloProvider,
   render: h => h(App),
-  apolloProvider
 })
