@@ -21,7 +21,15 @@ export default {
       type: Object,
       required: true
     }
-  }  
+  },
+
+  // apollo: {
+  //   // Vue-Apollo options here
+  // },
+
+  created() {
+    // console.log('BORA', this.$apollo)
+  }
 };
 </script>
 

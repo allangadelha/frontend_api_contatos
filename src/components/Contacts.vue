@@ -6,13 +6,16 @@
 
 <script>
 
+
 import data from '../data'
 import Item from './Item'
 
+
 export default {
   name: 'Contacts',
-  components: { Item },
+  components: { Item },  
   data() {
+    console.log('aaa', data)
     return {
       contacts: data
     }
